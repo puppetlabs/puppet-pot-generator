@@ -10,7 +10,7 @@ class PuppetPotGenerator::PotGenerator
   end
 
   def self.generate_metadata_pot
-    path = 'manifests'
+    path = './manifests'
     parser = Puppet::Pops::Parser::EvaluatingParser.new
     jim = PuppetPotGenerator::PotGenerator.new
     Dir["#{path}/**/*.pp"].each do |file|
