@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   EOF
   spec.summary = 'Generates a pot file from your puppet code'
   spec.add_runtime_dependency 'puppet', '~> 5.0'
+  spec.add_runtime_dependency 'semantic_puppet'
 end
