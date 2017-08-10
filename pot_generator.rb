@@ -1,4 +1,4 @@
-require 'puppet-pot-generator'
+require 'puppet-pot-generator/puppet_pot_generator'
 require 'pry'
 
 path = File.expand_path(ARGV[0])
