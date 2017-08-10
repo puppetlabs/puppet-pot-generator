@@ -5,6 +5,20 @@ class PotGenerator
   attr_reader :metrics
   TRANSLATE_FUNCTION = 'translate'.freeze
 
+  def self.metadata_path
+    File.join('locales', 'puppet' + '_metadata.pot')
+  end
+
+  def self.generate_metadata_pot
+    path = 'manifests'
+    parser = Puppet::Pops::Parser::EvaluatingParser.new
+    jim = PuppetPotGenerator::PotGenerator.new
+    Dir["#{path}/**/*.pp"].each do |file|
+      program = parser.parse_file(file)
+      jim.compute(program)
+    end
+  end
+
   def initialize
     @potgenerator_visitor ||= Puppet::Pops::Visitor.new(nil, 'potgenerator', 0, 0)
   end

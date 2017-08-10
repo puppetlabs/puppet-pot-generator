@@ -1,6 +1,8 @@
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
+import 'lib/tasks/puppet_pot_generator.rake'
+
 RSpec::Core::RakeTask.new(:spec)
 
 task :default => :spec
