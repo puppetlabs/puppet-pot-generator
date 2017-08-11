@@ -4,18 +4,20 @@ require 'puppet'
 class PuppetPotGenerator
   attr_reader :metrics
   TRANSLATE_FUNCTION = 'translate'.freeze
+  PATH_TO_MANIFESTS = './manifests/**/*.pp'.freeze
+  PATH_TO_LOCALES = './locales'.freeze
+  PUPPET_POT_FILE = File.join(PATH_TO_LOCALES, 'puppet' + '_metadata.pot')
 
-  def self.metadata_path
-    File.join('locales', 'puppet' + '_metadata.pot')
-  end
-
-  def self.generate_metadata_pot
-    path = './manifests'
+  def self.generate_puppet_pot_file
+    raise "PuppetPotGenerator: #{PATH_TO_LOCALES} folder does not exist" unless File.directory?(PATH_TO_LOCALES)
+    open(PUPPET_POT_FILE, 'w') do |file|
+      file << ''
+    end
     parser = Puppet::Pops::Parser::EvaluatingParser.new
-    jim = PuppetPotGenerator.new
-    Dir["#{path}/**/*.pp"].each do |file|
+    ppg = PuppetPotGenerator.new
+    Dir[PATH_TO_MANIFESTS].each do |file|
       program = parser.parse_file(file)
-      jim.compute(program)
+      ppg.compute(program)
     end
   end
 
@@ -37,9 +39,13 @@ class PuppetPotGenerator
                               else
                                 statement.arguments[0].value
                               end
-    print '#. ' + path_to_file + ':' + line_number.to_s + "\n"
-    print 'msgid: "' + string_to_be_translated + "\"\n"
-    print "msgstr: \"\"\n"
+    pot_entry =  '#. ' + path_to_file + ':' + line_number.to_s + "\n"
+    pot_entry << 'msgid: "' + string_to_be_translated + "\"\n"
+    pot_entry << "msgstr: \"\"\n"
+    puts pot_entry
+    open(PUPPET_POT_FILE, 'a') do |file|
+      file << pot_entry
+    end
   end
 
   def potgenerator(o)
