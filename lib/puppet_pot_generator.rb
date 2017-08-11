@@ -1,7 +1,7 @@
 require 'puppet'
 
-# parses a file and reports every instance of a translate function
-class PuppetPotGenerator::PotGenerator
+# parses and reports every instance of a translate function
+class PuppetPotGenerator
   attr_reader :metrics
   TRANSLATE_FUNCTION = 'translate'.freeze
 
@@ -12,7 +12,7 @@ class PuppetPotGenerator::PotGenerator
   def self.generate_metadata_pot
     path = './manifests'
     parser = Puppet::Pops::Parser::EvaluatingParser.new
-    jim = PuppetPotGenerator::PotGenerator.new
+    jim = PuppetPotGenerator.new
     Dir["#{path}/**/*.pp"].each do |file|
       program = parser.parse_file(file)
       jim.compute(program)

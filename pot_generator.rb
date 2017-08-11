@@ -1,11 +1,10 @@
-require 'puppet-pot-generator/puppet_pot_generator'
-require 'pry'
+require 'puppet_pot_generator'
 
 path = File.expand_path(ARGV[0])
 
 def do_shit(file)
   parser = Puppet::Pops::Parser::EvaluatingParser.new
-  jim = PuppetPotGenerator::PotGenerator.new
+  jim = PuppetPotGenerator.new
   program = parser.parse_file(file)
   jim.compute(program)
 end
