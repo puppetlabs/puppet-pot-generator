@@ -2,10 +2,10 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'puppet-pot-generator/version'
+require 'puppet_pot_generator/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'puppet-pot-generator'
+  spec.name = 'puppet_pot_generator'
   spec.version     = PuppetPotGenerator::VERSION
   spec.homepage    = 'https://github.com/puppetlabs/puppet-pot-generator'
   spec.license     = 'Apache 2.0'
