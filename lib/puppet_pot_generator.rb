@@ -6,7 +6,7 @@ class PuppetPotGenerator
   TRANSLATE_FUNCTION = 'translate'.freeze
   PATH_TO_MANIFESTS = './manifests/**/*.pp'.freeze
   PATH_TO_LOCALES = './locales'.freeze
-  PUPPET_POT_FILE = File.join(PATH_TO_LOCALES, 'puppet' + '_metadata.pot')
+  PUPPET_POT_FILE = File.join(PATH_TO_LOCALES, 'puppet.pot')
 
   def self.generate_puppet_pot_file
     raise "PuppetPotGenerator: #{PATH_TO_LOCALES} folder does not exist" unless File.directory?(PATH_TO_LOCALES)
