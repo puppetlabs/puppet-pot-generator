@@ -40,8 +40,8 @@ class PuppetPotGenerator
                                 statement.arguments[0].value
                               end
     pot_entry =  '#. ' + path_to_file + ':' + line_number.to_s + "\n"
-    pot_entry << 'msgid: "' + string_to_be_translated + "\"\n"
-    pot_entry << "msgstr: \"\"\n"
+    pot_entry << 'msgid "' + string_to_be_translated + "\"\n"
+    pot_entry << "msgstr \"\"\n"
     puts pot_entry
     open(PUPPET_POT_FILE, 'a') do |file|
       file << pot_entry
