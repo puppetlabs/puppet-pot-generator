@@ -10,6 +10,7 @@ class PuppetPotGenerator
 
   def self.generate_puppet_pot_file
     raise "PuppetPotGenerator: #{PATH_TO_LOCALES} folder does not exist" unless File.directory?(PATH_TO_LOCALES)
+    raise 'PuppetPotGenerator: requires version 5 of greater of puppet' unless Puppet::Util::Package.versioncmp(Puppet.version, '5.0.0') >= 0
     open(PUPPET_POT_FILE, 'w') do |file|
       file << ''
     end
