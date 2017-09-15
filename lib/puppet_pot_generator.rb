@@ -30,22 +30,22 @@ class PuppetPotGenerator
   end
 
   def header
-    pot_header = <<-EOF
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\\n"
-"Report-Msgid-Bugs-To: \\n"
-"POT-Creation-Date: #{Time.now}\\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"
-"Language-Team: LANGUAGE <LL@li.org>\\n"
-"MIME-Version: 1.0\\n"
-"Content-Type: text/plain; charset=UTF-8\\n"
-"Content-Transfer-Encoding: 8bit\\n"
-"X-Generator: Translate Toolkit 2.0.0\\n"
+    <<-HEADER
+  #, fuzzy
+  msgid ""
+  msgstr ""
+  "Project-Id-Version: PACKAGE VERSION\\n"
+  "Report-Msgid-Bugs-To: \\n"
+  "POT-Creation-Date: #{Time.now}\\n"
+  "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
+  "Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"
+  "Language-Team: LANGUAGE <LL@li.org>\\n"
+  "MIME-Version: 1.0\\n"
+  "Content-Type: text/plain; charset=UTF-8\\n"
+  "Content-Transfer-Encoding: 8bit\\n"
+  "X-Generator: Translate Toolkit 2.0.0\\n"
 
-EOF
+  HEADER
   end
 
   def report_on_translate_function(statement)
