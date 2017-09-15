@@ -11,11 +11,9 @@ class PuppetPotGenerator
   def self.generate_puppet_pot_file
     raise "PuppetPotGenerator: #{PATH_TO_LOCALES} folder does not exist" unless File.directory?(PATH_TO_LOCALES)
     raise 'PuppetPotGenerator: requires version 5 of greater of puppet' unless Puppet::Util::Package.versioncmp(Puppet.version, '5.0.0') >= 0
-    open(PUPPET_POT_FILE, 'w') do |file|
-      file << ''
-    end
     parser = Puppet::Pops::Parser::EvaluatingParser.new
     ppg = PuppetPotGenerator.new
+    open(PUPPET_POT_FILE, 'w') { |file| file << ppg.header }
     Dir[PATH_TO_MANIFESTS].each do |file|
       program = parser.parse_file(file)
       ppg.compute(program)
@@ -29,6 +27,25 @@ class PuppetPotGenerator
   def compute(target)
     @path = []
     target._pcore_all_contents(@path) { |element| potgenerator(element) }
+  end
+
+  def header
+    <<-HEADER
+  #, fuzzy
+  msgid ""
+  msgstr ""
+  "Project-Id-Version: PACKAGE VERSION\\n"
+  "Report-Msgid-Bugs-To: \\n"
+  "POT-Creation-Date: #{Time.now}\\n"
+  "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
+  "Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"
+  "Language-Team: LANGUAGE <LL@li.org>\\n"
+  "MIME-Version: 1.0\\n"
+  "Content-Type: text/plain; charset=UTF-8\\n"
+  "Content-Transfer-Encoding: 8bit\\n"
+  "X-Generator: Translate Toolkit 2.0.0\\n"
+
+  HEADER
   end
 
   def report_on_translate_function(statement)

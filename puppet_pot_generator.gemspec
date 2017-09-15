@@ -1,5 +1,3 @@
-# coding: utf-8
-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'puppet_pot_generator/version'
@@ -18,9 +16,9 @@ Gem::Specification.new do |spec|
     'spec/**/*',
   ]
   spec.test_files  = Dir['spec/**/*']
-  spec.description = <<-EOF
+  spec.description = <<-DESC
     Generates a pot file from your puppet code
-  EOF
+  DESC
   spec.summary = 'Generates a pot file from your puppet code'
   spec.add_runtime_dependency 'puppet'
   spec.add_runtime_dependency 'semantic_puppet'
