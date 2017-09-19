@@ -13,8 +13,8 @@ end
 begin
   require 'github_changelog_generator/task'
   GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-    require 'puppet-lint/plugins/version'
-    config.future_release = "v#{CheckI18n::VERSION}"
+    require 'puppet_pot_generator/version'
+    config.future_release = "v#{PuppetPotGenerator::VERSION}"
     config.header = "# Changelog\n\nAll notable changes to this project will be documented in this file.\n"
     config.include_labels = %w[enhancement bug]
     config.user = 'puppetlabs'
