@@ -1,6 +1,6 @@
 require 'puppet'
 
-# parses and reports every instance of a translate function
+# Parses and reports every instance of a translate function
 class PuppetPotGenerator
   attr_reader :metrics
   TRANSLATE_FUNCTION = 'translate'.freeze
